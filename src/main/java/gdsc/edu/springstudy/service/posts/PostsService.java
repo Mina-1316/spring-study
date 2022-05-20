@@ -2,12 +2,15 @@ package gdsc.edu.springstudy.service.posts;
 
 import gdsc.edu.springstudy.domain.posts.Posts;
 import gdsc.edu.springstudy.domain.posts.PostsRepository;
+import gdsc.edu.springstudy.web.dto.PostsListResponseDto;
 import gdsc.edu.springstudy.web.dto.PostsResponseDto;
 import gdsc.edu.springstudy.web.dto.PostsSaveRequestDto;
 import gdsc.edu.springstudy.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 // 서비스 메소드를 담아 두는 클래스
 // 서비스 메소드는 트랙잭션과 도메인 간의 순서만 보장
@@ -34,5 +37,21 @@ public class PostsService {
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
         return new PostsResponseDto(entity);
+    }
+
+    // find and return all of posts by descending order
+    @Transactional(readOnly = true) // 속도 향상이 있다???
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    // Delete by ID
+    @Transactional
+    public void delete(Long id) {
+        postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+
+        postsRepository.deleteById(id);
     }
 }
