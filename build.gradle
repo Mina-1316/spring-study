@@ -43,10 +43,33 @@ dependencies {
     compileOnly 'com.h2database:h2'
     testCompileOnly 'com.h2database:h2'
 
+    // Spring Security(oauth2)
+    compileOnly 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.6.7'
+
+    // spring-session-jdbc
+    compileOnly 'org.springframework.session:spring-session-jdbc'
+
     //Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-test'
+    testImplementation 'org.junit.vintage:junit-vintage-engine'
     testImplementation 'org.assertj:assertj-core'
+}
+
+// include policy of test files
+sourceSets {
+    test{
+        resources {
+            srcDirs "${project.projectDir}/src/test/resources", "${project.projectDir}/src/main/resources"
+        }
+    }
+}
+
+tasks {
+    processTestResources {
+        duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
+    }
 }
 
 tasks.named('test') {

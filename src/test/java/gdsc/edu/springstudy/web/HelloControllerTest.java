@@ -1,11 +1,14 @@
 package gdsc.edu.springstudy.web;
 
 
+import gdsc.edu.springstudy.config.auth.SecurityConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -15,7 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 // @RunWith(SpringRunner.class) - Junit4에서만 사용, 5에는 없음
 @ExtendWith(SpringExtension.class) // 이걸로 바꿔야됨
-@WebMvcTest(controllers = HelloController.class)
+@WebMvcTest(controllers = HelloController.class,
+            excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {
+                        SecurityConfig.class
+                })
+            })
 public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;
