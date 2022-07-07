@@ -6,6 +6,7 @@ import gdsc.edu.springstudy.web.dto.PostsSaveRequestDto;
 import gdsc.edu.springstudy.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor

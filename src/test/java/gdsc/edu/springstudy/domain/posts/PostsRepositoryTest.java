@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
@@ -16,7 +18,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest @EnableJpaAuditing
 class PostsRepositoryTest {
 
     @Autowired
@@ -50,7 +52,7 @@ class PostsRepositoryTest {
     }
 
     // Tests for Timestamp
-    @Test @DisplayName("[Repository] 게시글 게시/수정 시간 등록")
+    @Test @DisplayName("[Repository] 게시글 게시/수정 시간 등록") @WithMockUser(roles = "USER")
     public void postTimestampTest() {
         //given
         LocalDateTime now = LocalDateTime.now().minusSeconds(5);

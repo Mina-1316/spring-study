@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -28,14 +29,14 @@ public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    @Test @DisplayName("[API]Hello를 리턴하는 HelloController 테스트")
+    @Test @DisplayName("[API]Hello를 리턴하는 HelloController 테스트") @WithMockUser(roles = "USER")
     public void returnHelloString() throws Exception {
         mvc.perform(get("/hello"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello"));
     }
 
-    @Test @DisplayName("[API]DTO를 이용한 Request에 반응하는 테스트")
+    @Test @DisplayName("[API]DTO를 이용한 Request에 반응하는 테스트") @WithMockUser(roles = "USER")
     public void returnHelloDto() throws Exception {
         String name = "Spring";
         int amount = 1000;
