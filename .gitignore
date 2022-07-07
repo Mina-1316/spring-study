@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Secret ###
-**/*.properties
+src/**/*.properties
