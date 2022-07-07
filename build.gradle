@@ -40,8 +40,12 @@ dependencies {
     //testCompileOnly 'org.mariadb.jdbc:mariadb-java-client'
 
     //Database drivers - H2
-    compileOnly 'com.h2database:h2'
-    testCompileOnly 'com.h2database:h2'
+    //compileOnly 'com.h2database:h2'
+    //testCompileOnly 'com.h2database:h2'
+
+    // Database drivers - MariaDB
+    compileOnly 'org.mariadb.jdbc:mariadb-java-client'
+    testImplementation 'org.mariadb.jdbc:mariadb-java-client'
 
     // Spring Security(oauth2)
     compileOnly 'org.springframework.boot:spring-boot-starter-oauth2-client'
@@ -56,7 +60,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-test'
     testImplementation 'org.junit.vintage:junit-vintage-engine'
     testImplementation 'org.assertj:assertj-core'
-    testCompileOnly 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 // include policy of test files
