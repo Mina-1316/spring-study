@@ -27,13 +27,13 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     //Jackson XML
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.3'
 
     //Spring Data JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     // Mustache Template Engine
-    compileOnly 'org.springframework.boot:spring-boot-starter-mustache'
+    runtimeOnly 'org.springframework.boot:spring-boot-starter-mustache'
 
     //Database drivers - MariaDB
     //compileOnly 'org.mariadb.jdbc:mariadb-java-client'
@@ -44,16 +44,16 @@ dependencies {
     //testCompileOnly 'com.h2database:h2'
 
     // Database drivers - MariaDB
-    compileOnly 'org.mariadb.jdbc:mariadb-java-client'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     testImplementation 'org.mariadb.jdbc:mariadb-java-client'
 
     // Spring Security(oauth2)
-    compileOnly 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     testImplementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.6.8'
 
     // spring-session-jdbc
-    compileOnly 'org.springframework.session:spring-session-jdbc'
+    apiElements 'org.springframework.session:spring-session-jdbc'
 
     //Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
