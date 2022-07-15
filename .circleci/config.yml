@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: "azul/zulu-openjdk-alpine:8-latest"
+      - image: "circleci/openjdk:8"
 
     steps:
       - checkout
