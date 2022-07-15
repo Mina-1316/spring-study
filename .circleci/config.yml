@@ -1,0 +1,9 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: "azul/zulu-openjdk-alpine:8-latest"
+
+    steps:
+      - checkout
+      - run: "./gradlew clean build"
