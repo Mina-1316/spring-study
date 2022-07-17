@@ -1,5 +1,6 @@
 REPOSITORY=/home/ec2-user/app/step2
 PROJECT_NAME=springstudy
+PROPERTY=/home/ec2-user/app
 
 echo "> JAR 파일 복사"
 cp $REPOSITORY/build/libs/*.jar $REPOSITORY/
@@ -31,7 +32,7 @@ chmod +x "$JAR_NAME"
 echo "> $JAR_NAME 실행"
 
 nohup java -jar \
-  -Dspring.config.location=classpath:/application.properties,/home/ec2-user/app/application-oauth.properties \
+  -Dspring.config.location=classpath:$PROPERTY/application.properties,$PROPERTY/application-oauth.properties \
   -Dspring.profiles.active=production \
   -jar \
   "$JAR_NAME" > $REPOSITORY/nohup.out 2>&1 &
